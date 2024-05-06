@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+{% block Title %}
+    MedBora Hospital
+{% endblock Title %}
+
+{% block content %}
+    <div class=" container-fluid row p-5">
+        <div class="col-md-5" style="border-right: 1px solid red;border-left: 1px solid red;">
+            <u><h3>Patient Registration</h3></u>
+           <form method="POST" action="/addpatient" style="width:100%;">
+                  {% csrf_token %}
+                <table>
+                    <tr>
+                        <TD>
+                <label for="patname">Name</label><br>
+                <input type="text" id="patname" name="patname" required placeholder="Enter your name">
+                        </TD>
+        
+                        <td>
+                <label for="patage">Age</label><br>
+                <input type="number" id="patage" name="patage" placeholder="Enter your age" required>
+                        </td>
+                    </tr>
+        
+        
+                    <tr><td>
+                <label for="myemail">Email</label><br>
+                <input type="email" id="myemail" name="patemail" placeholder="Enter your email" required>
+                    </td>
+        
+                      <td>
+                <label for="Disease">Disease</label><br>
+                <input type="text" id="Disease" name="patdisease" placeholder="Enter your disease" required>
+                    </td>
+        
+                    </tr>
+        
+        
+                <tr>
+                    <td><br>  <input type="submit" name="save data" VALUE="Save" style="background-color: aqua;"></td>
+                </tr>
+                    </table>
+              </form>
+        </div>
+    
+        <div class="col-md-7" style="border-right: 1px solid red;padding:10px;">
+      <u><h3 class="bg-dark text-white text-center p-1">Registered Patients</h3></u>
+      <table class="table">
+        <thead>
+          <tr>
+            <th >Name</th>
+            <th >Email</th>
+            <th >Age</th>
+            <th>Disease</th>  
+            <th >Edit</th>
+            <th >Delete</th>
+          </tr>
+        </thead>
+        <tbody>
+        {% for patient in data %}
+            <tr>
+                <td>{{ patient.patname }}</td>
+
+                <td>{{ patient.patname }}</td>
+
+                <td>{{ patient.patage }}</td>
+                
+                <td>{{ patient.patdisease }}</td>
+               <td>
+                     <a href="/editpatient/{{ patient.id }}" type="button" class="btn btn-outline-success">Edit</a>
+                </td>
+                <td>
+                     <a href="/deletepatient/{{ patient.id }}" type="button" class="btn btn-outline-danger">Delete</a>
+                </td>
+
+            </tr>
+        {% endfor %}
+
+        </tbody>
+      </table>
+    </div>
+    
+    </div>
+{% endblock content %}

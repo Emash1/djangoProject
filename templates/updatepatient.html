@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block Title %}
+    Patient Dashboard
+{% endblock Title %}
+
+{% block content %}
+<form method="POST" action="/updatepatient/{{ data.id }}" style="width:100%;">
+          {% csrf_token %}
+        <table>
+            <tr>
+                <TD>
+        <label for="patname">Name</label><br>
+        <input type="text" id="patname" value="{{ data.patname }}" name="patname" required placeholder="Enter your name">
+                </TD>
+
+                <td>
+        <label for="patage">Age</label><br>
+        <input type="number" id="patage" value="{{ data.patage }}" name="patage" placeholder="Enter your age" required>
+                </td>
+            </tr>
+
+
+            <tr><td>
+        <label for="myemail">Email</label><br>
+        <input type="email" id="myemail" value="{{ data.patemail }}" name="patemail" placeholder="Enter your email" required>
+            </td>
+
+              <td>
+        <label for="Disease">Disease</label><br>
+        <input type="text" id="patdisease" value="{{ data.patdisease }}" name="patdisease" placeholder="Enter your disease" required>
+            </td>
+
+            </tr>
+
+
+        <tr>
+            <td><br>  <input type="submit" name="submit" VALUE="Update"></td>
+        </tr>
+            </table>
+      </form>
+
+{% endblock content %}
